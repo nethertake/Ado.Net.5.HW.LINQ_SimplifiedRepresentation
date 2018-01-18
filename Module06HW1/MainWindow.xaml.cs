@@ -29,11 +29,17 @@ namespace Module06HW1
 
         private void GetData_Click(object sender, RoutedEventArgs e)
         {
+            try { 
             List<Area> data = db.Area.Where(w => w.WorkingPeople > 2).ToList();
             GridView1.Columns.Clear();
             GridView1.Columns.Add(new GridViewColumn() { Header = "AreaID", DisplayMemberBinding = new Binding() {Path = new PropertyPath("AreaId") } });
             GridView1.Columns.Add(new GridViewColumn() { Header = "Name", DisplayMemberBinding = new Binding() { Path = new PropertyPath("Name") } });
             ListViewData.ItemsSource = data;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void GetData2_Click(object sender, RoutedEventArgs e)
